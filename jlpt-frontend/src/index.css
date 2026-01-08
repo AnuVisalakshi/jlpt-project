@@ -1,0 +1,207 @@
+/* The main background for the whole page */
+.page-container {
+  padding: 40px;
+  background-color: #f4f4f9;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+/* The header title */
+.main-title {
+  text-align: center;
+  color: #333;
+}
+
+/* The layout grid for the cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The look of each individual card */
+.study-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.furigana-text {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.kanji-text {
+  font-size: 2.2rem;
+  margin: 0 0 10px 0;
+}
+
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 10px 0;
+}
+
+.meaning-text {
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* The bottom navigation area */
+.pagination-controls {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.nav-button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.page-info {
+  margin: 0 20px;
+  font-weight: bold;
+}
+
+/* Card Flip Container */
+.flip-card {
+  background-color: transparent;
+  perspective: 1000px; /* Gives the 3D effect */
+  height: 200px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+/* This class will be added/removed by JavaScript */
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  background: white;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* Page Input Styling */
+.page-input {
+  width: 50px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.mode-selector {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.mode-button {
+  margin: 0 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  border: 1px solid #007bff;
+  background: white;
+  border-radius: 20px;
+}
+
+.mode-button.active {
+  background: #007bff;
+  color: white;
+}
+
+.home-container {
+  text-align: center;
+  padding: 50px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.level-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.level-card {
+  width: 150px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: none;
+  background: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.level-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.level-label { font-size: 0.9rem; color: #666; }
+.level-number { font-size: 3rem; font-weight: 800; color: #333; }
+
+/* Colors for different levels */
+.n5 { border-bottom: 8px solid #4caf50; }
+.n4 { border-bottom: 8px solid #2196f3; }
+.n3 { border-bottom: 8px solid #ff9800; }
+.n2 { border-bottom: 8px solid #f44336; }
+.n1 { border-bottom: 8px solid #9c27b0; }
+
+.back-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.level-count {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 8px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Optional: change the color slightly on hover to keep it readable */
+.level-card:hover .level-count {
+  color: #696868;
+  opacity: 0.9;
+}

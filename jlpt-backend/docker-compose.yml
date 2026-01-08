@@ -1,0 +1,39 @@
+services:
+  # 1. THE DATABASE
+  db:
+    image: postgres:15-alpine
+    container_name: jlpt-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecret
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+
+  # 2. THE JAVA BACKEND
+  backend:
+    build: ./jlpt-backend  # Points to your backend folder
+    container_name: jlpt-backend
+    ports:
+      - "8080:8080"
+    environment:
+      # This matches the ${SPRING_DATASOURCE_URL} in your yml!
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres?options=-c%20timezone=UTC
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=mysecret
+    depends_on:
+      - db
+
+  # 3. THE REACT FRONTEND
+  frontend:
+    build: ./jlpt-frontend  # Make sure this matches your React folder name!
+    container_name: jlpt-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      # This tells React to talk to the backend inside Docker
+      - VITE_API_URL=http://localhost:8080
+    stdin_open: true # Keeps the terminal open so Vite doesn't exit
+    tty: true        # Allows you to see the colorful Vite logs
+    depends_on:
+      - backend
