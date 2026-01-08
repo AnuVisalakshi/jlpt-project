@@ -12,8 +12,9 @@ import java.util.List;
 @Repository
 public interface JlptRepository extends JpaRepository<WordContent, Long> {
 
-    @Cacheable(value = "jlptCache", key = "#level")
+
     Page<WordContent> findByLevel(String level, Pageable pageable);
 
+    @Cacheable(value = "jlptCache", key = "#level")
     List<WordContent> findAllByLevel(String level);
 }
