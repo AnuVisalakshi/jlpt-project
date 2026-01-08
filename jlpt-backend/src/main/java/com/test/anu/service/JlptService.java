@@ -15,13 +15,8 @@ public class JlptService {
     @Autowired
     JlptRepository repository;
 
-    public List<WordContent> getFullListByLevel(String level) {
-        System.out.println("--- CACHE MISS: Fetching from DB for level " + level + " ---");
-        return repository.findAllByLevel(level);
-    }
-
     public JlptResponse getPaginatedWords(String level, int page, int size) {
-        List<WordContent> allWords = getFullListByLevel(level.toUpperCase());
+        List<WordContent> allWords = repository.findAllByLevelWithLog(level.toUpperCase());
 
         int start = Math.min(page * size, allWords.size());
         int end = Math.min(start + size, allWords.size());

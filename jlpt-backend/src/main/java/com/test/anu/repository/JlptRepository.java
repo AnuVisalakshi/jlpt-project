@@ -16,5 +16,10 @@ public interface JlptRepository extends JpaRepository<WordContent, Long> {
     Page<WordContent> findByLevel(String level, Pageable pageable);
 
     @Cacheable(value = "jlptCache", key = "#level")
+    default List<WordContent> findAllByLevelWithLog(String level) {
+        System.out.println("--- ACTUAL DATABASE HIT FOR LEVEL: " + level + " ---");
+        return findAllByLevel(level);
+    }
+
     List<WordContent> findAllByLevel(String level);
 }
